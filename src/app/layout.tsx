@@ -2,7 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 
-import ParticlesBackground from '@/components/ParticlesLayout/ParticlesBackground'
+import ParticlesBackground from '@/components/layouts/ParticlesLayout/ParticlesBackground'
+import { Toaster } from '@/components/ui/sonner'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -16,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Games Next App',
-  description: 'Tic tac toe game with algorithms build with next js',
+  description: 'Tic Tac Toe game with algorithms build with next js',
 }
 
 export default function RootLayout({
@@ -27,8 +28,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Toaster position="top-center" />
         <ParticlesBackground />
-        {children}
+        <div className="h-[100vh] container mx-auto">{children}</div>
       </body>
     </html>
   )

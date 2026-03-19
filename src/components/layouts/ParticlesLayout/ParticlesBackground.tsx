@@ -7,7 +7,6 @@ import { loadFull } from 'tsparticles'
 
 export default function ParticlesBackground() {
   const particlesInit = useCallback(async (engine: Engine) => {
-    // تحميل كل الـ presets والأنواع
     await loadFull(engine)
   }, [])
 
