@@ -15,11 +15,12 @@ const oponentTypeSchema = z.object({
   opponentType: z.enum(['computer', 'friend'], { message: 'Please select an option' }),
 })
 
-export default function XOStep1() {
+export default function XOStep1({onChangeStep}:{onChangeStep:(val:1|2)=>void}) {
   const { setOpponentType, resetGameState } = useGameSettingsContext()
 
   const onSubmit = (data: z.infer<typeof oponentTypeSchema>) => {
     setOpponentType(data.opponentType)
+    onChangeStep(2)
   }
 
   const {
@@ -30,6 +31,11 @@ export default function XOStep1() {
   } = useForm({
     resolver: zodResolver(oponentTypeSchema),
   })
+
+  function handleCancel () {
+    resetGameState()
+    onChangeStep(1)
+  }
 
   return (
     <>
@@ -95,7 +101,7 @@ export default function XOStep1() {
         )}
         <DrawerFooter className="flex flex-row gap-3 justify-center p-6 flex-wrap-reverse">
           <DrawerClose asChild>
-            <Button variant="outline" className="w-full sm:w-[180px] h-12" onClick={resetGameState}>
+            <Button variant="outline" className="w-full sm:w-[180px] h-12" onClick={handleCancel}>
               Cancel
             </Button>
           </DrawerClose>

@@ -1,11 +1,18 @@
-import XOGameOverview from '@/components/modules/XOGame/XOGameOverview'
-import SelectGameCarousel from '@/components/modules/SelectGameCarousel/SelectGameCarousel'
+'use client'
 
-export default function page() {
+import SelectGameCarousel from '@/components/modules/SelectGameCarousel/SelectGameCarousel'
+import { useState } from 'react'
+import { Games } from '@/components/modules/SelectGameCarousel/games'
+
+export default function Page() {
+  const [currentPlay, setCurrentPlay] = useState(0)
+
+  const OverviewComponent = Games[currentPlay].overViewComponent
+
   return (
     <div className="grid xl:grid-cols-2 items-center gap-x-10 gap-y-1 h-full">
-      <XOGameOverview />
-      <SelectGameCarousel />
+      <OverviewComponent />
+      <SelectGameCarousel onNextPlay={setCurrentPlay} />
     </div>
   )
 }

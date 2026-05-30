@@ -1,33 +1,84 @@
 'use client'
+
+import { useEffect, useRef, useState } from 'react'
+
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from '@/components/ui/carousel'
 
-import PathDrawing from '../XOGame/XOGrid/XOGrid'
 import Autoplay from 'embla-carousel-autoplay'
 
-export default function SelectGameCarousel() {
+import { Games } from './games'
+
+import useGameSettingsContext from '@/hooks/useGameSettingsContext'
+
+export default function SelectGameCarousel({
+  onNextPlay,
+}: {
+  onNextPlay: (index: number) => void
+}) {
+  const autoplay = useRef(
+    Autoplay({
+      delay: 5000,
+    }),
+  )
+
+  const [api, setApi] = useState<CarouselApi>()
+  const [current, setCurrent] = useState(0)
+
+  const { gameState } = useGameSettingsContext()
+
+  useEffect(() => {
+    if (!!gameState?.currentGame) {
+      autoplay.current.stop()
+    }
+  }, [gameState?.currentGame])
+
+  useEffect(() => {
+    if (!api) return
+
+    const onSelect = () => {
+      const currentIndex = api.selectedScrollSnap()
+
+      setCurrent(currentIndex)
+
+      onNextPlay(currentIndex)
+    }
+
+    onSelect()
+
+    api.on('select', onSelect)
+
+    return () => {
+      api.off('select', onSelect)
+    }
+  }, [api, onNextPlay])
+
   return (
     <div className="w-full max-w-[320px] sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto">
-      <Carousel
-        plugins={[
-          Autoplay({
-            delay: 2000,
-          }),
-        ]}
-      >
+      <Carousel setApi={setApi} plugins={[autoplay.current]}>
         <CarouselContent>
-          <CarouselItem>
-            <PathDrawing />
-          </CarouselItem>
+          {Games.map((play, index) => {
+            const PreviewComponent = play.previewComponent
+
+            return (
+              <CarouselItem key={index}>
+                <PreviewComponent />
+              </CarouselItem>
+            )
+          })}
         </CarouselContent>
+
         <CarouselPrevious variant="link" />
         <CarouselNext variant="link" />
       </Carousel>
+
+      <div className="text-center mt-4">Current Item: {current}</div>
     </div>
   )
 }

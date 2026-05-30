@@ -124,3 +124,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .perspective {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .group:hover .shine-effect {
+    opacity: 1;
+    transform: scale(1.5) translate(-30%, -30%);
+    transition:
+      opacity 0.5s ease,
+      transform 0.5s ease;
+  }
+
+  .shine-effect {
+    opacity: 0;
+    transform: scale(1) translate(-50%, -50%);
+    transition:
+      opacity 0.5s ease,
+      transform 0s;
+  }
+}

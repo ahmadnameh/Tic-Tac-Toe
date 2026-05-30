@@ -1,5 +1,6 @@
 'use client'
 
+import XOGameSteps from './XOStepsBeforePlay/XOGameSteps'
 import { GameSettingsDrawer } from '../common/GameSettings/GameSettingsDrawer'
 import { motion } from 'motion/react'
 
@@ -37,7 +38,11 @@ export default function XOGameOverview() {
         <div className="w-24 h-[2px] bg-gradient-to-r from-[#0d63f8] to-[#ff0088] mx-auto my-8 rounded-full" />
 
         <div className="flex justify-center">
-          <GameSettingsDrawer />
+          <GameSettingsDrawer game="XO">
+            <div className="p-6 pb-0 min-h-[150px]">
+              <XOGameSteps />
+            </div>
+          </GameSettingsDrawer>
         </div>
       </div>
     </motion.div>

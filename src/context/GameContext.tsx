@@ -10,8 +10,7 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
     currentGame: null,
     opponentType: null,
     difficulty: null,
-    playersName: [],
-    playerSymbol: 'X',
+    playersName: { X: '', O: '' },
   })
 
   useEffect(() => {
@@ -34,19 +33,19 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
   function setDifficulty(difficulty: TDifficulty) {
     setGameState((prev) => ({ ...prev, difficulty: difficulty }))
   }
-  function setPlayersName(playersName: string[]) {
+  function setPlayersName(playersName: { X: string; O: string }) {
     setGameState((prev) => ({ ...prev, playersName: playersName }))
-  }
-
-  function setPlayerSymbol(selectedSymbol: 'X' | 'O') {
-    setGameState((prev) => ({ ...prev, playerSymbol: selectedSymbol }))
   }
 
   function isGameSettingsReady() {
     if (gameState.opponentType === 'computer') {
       return !!gameState.currentGame && !!gameState.difficulty
     } else if (gameState.opponentType === 'friend') {
-      return !!gameState.currentGame && gameState.playersName.every((name) => name.trim() !== '')
+      return (
+        !!gameState.currentGame &&
+        gameState.playersName.X.trim() !== '' &&
+        gameState.playersName.O.trim() !== ''
+      )
     }
 
     return false
@@ -67,8 +66,7 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
       currentGame: null,
       opponentType: null,
       difficulty: null,
-      playersName: ['You', 'Computer'],
-      playerSymbol: 'X',
+      playersName: { X: '', O: '' },
     })
   }
 
@@ -79,7 +77,6 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
       setOpponentType,
       setDifficulty,
       setPlayersName,
-      setPlayerSymbol,
       isGameSettingsReady,
       saveFinalGameSettingState,
       resetGameState,

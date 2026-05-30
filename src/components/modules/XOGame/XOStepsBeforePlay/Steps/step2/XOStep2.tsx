@@ -7,7 +7,7 @@ import { TDifficulty } from '@/types/types'
 import VSComputerStep from './VSComputerStep'
 import VSFriendStep from './VSFriendStep'
 
-export default function XOStep2() {
+export default function XOStep2({onChangeStep}:{onChangeStep:(val:1|2)=>void}) {
   const router = useRouter()
   const {
     setDifficulty,
@@ -28,22 +28,28 @@ export default function XOStep2() {
     }
   }, [isGameSettingsReady, saveFinalGameSettingState, router, readyToNavigate])
 
+  function handleCancel () {
+    resetGameState()
+    onChangeStep(1)
+  }
+
+
   return gameState?.opponentType === 'computer' ? (
     <VSComputerStep
       onFinishingSteps={(difficulty: TDifficulty) => {
-        setPlayersName(['You', 'Computer'])
+        setPlayersName({ X: 'You', O: 'Computer' })
         setDifficulty(difficulty)
         setReadyToNavigate(true)
       }}
-      onCancel={resetGameState}
+      onCancel={handleCancel}
     />
   ) : (
     <VSFriendStep
-      onFinishingSteps={(playersName: string[]) => {
+      onFinishingSteps={(playersName: { X: string; O: string }) => {
         setPlayersName(playersName)
         setReadyToNavigate(true)
       }}
-      onCancel={resetGameState}
+      onCancel={handleCancel}
     />
   )
 }

@@ -8,10 +8,11 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer'
-import XOGameSteps from '../../XOGame/XOStepsBeforePlay/XOGameSteps'
 import useGameSettingsContext from '@/hooks/useGameSettingsContext'
+import { TGames } from '@/types/types'
+import { ReactNode } from 'react'
 
-export function GameSettingsDrawer() {
+export function GameSettingsDrawer({ children, game }: { children: ReactNode; game: TGames }) {
   const { selectGame, resetGameState } = useGameSettingsContext()
 
   return (
@@ -32,7 +33,7 @@ export function GameSettingsDrawer() {
           after:content-['LET\'S_GO!'] after:absolute after:top-0 after:left-0 after:flex after:h-full after:w-full after:items-center after:justify-center after:bg-gradient-to-r after:from-[#7EA4FF] after:to-[#4e84ff] after:text-white after:text-[1.2rem] after:font-semibold after:transition-all after:duration-500 after:ease-in-out after:translate-y-[50px]
           hover:after:translate-y-0 hover:after:scale-[1.2]
         "
-          onClick={() => selectGame('XO')}
+          onClick={() => selectGame(game)}
         ></button>
       </DrawerTrigger>
 
@@ -44,9 +45,7 @@ export function GameSettingsDrawer() {
               Customize your match before starting.
             </DrawerDescription>
           </DrawerHeader>
-          <div className="p-6 pb-0 min-h-[150px]">
-            <XOGameSteps />
-          </div>
+          {children}
         </div>
       </DrawerContent>
     </Drawer>

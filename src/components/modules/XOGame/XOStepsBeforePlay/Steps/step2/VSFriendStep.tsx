@@ -15,24 +15,24 @@ export default function VSFriendStep({
   onFinishingSteps,
   onCancel,
 }: {
-  onFinishingSteps: (playersName: string[]) => void
+  onFinishingSteps: (playersName: { X: string; O: string }) => void
   onCancel: () => void
 }) {
   const schema = z.object({
-    firstPlayerName: z.string().min(1, { message: 'player name is required' }),
-    secondPlayerName: z.string().min(1, { message: 'player name is required' }),
+    XPlayerName: z.string().min(1, { message: 'player name is required' }),
+    OPlayerName: z.string().min(1, { message: 'player name is required' }),
   })
 
   const { register, formState, handleSubmit, watch } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      firstPlayerName: 'player 1',
-      secondPlayerName: 'player 2',
+      XPlayerName: 'player 1',
+      OPlayerName: 'player 2',
     },
   })
 
   function onSubmit(data: z.infer<typeof schema>) {
-    onFinishingSteps([data.firstPlayerName, data.secondPlayerName])
+    onFinishingSteps({ X: data.XPlayerName, O: data.OPlayerName })
   }
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -55,16 +55,16 @@ export default function VSFriendStep({
               style={shape}
             />
           </motion.svg>
-          <p className="text-center mb-3 h-1">{watch('firstPlayerName')} </p>
+          <p className="text-center mb-3 h-1">{watch('OPlayerName')} </p>
           <div>
             <InputGroup>
-              <InputGroupInput placeholder="player name" {...register('firstPlayerName')} />
+              <InputGroupInput placeholder="player name" {...register('OPlayerName')} />
               <InputGroupAddon>
                 <User />
               </InputGroupAddon>
             </InputGroup>
-            {formState.errors.firstPlayerName && (
-              <FormErrorAlert message={formState.errors.firstPlayerName.message} className="mt-4" />
+            {formState.errors.OPlayerName && (
+              <FormErrorAlert message={formState.errors.OPlayerName.message} className="mt-4" />
             )}
           </div>
         </div>
@@ -97,25 +97,22 @@ export default function VSFriendStep({
               style={shape}
             />
           </motion.svg>
-          <p className="text-center mb-3 h-1">{watch('secondPlayerName')}</p>
+          <p className="text-center mb-3 h-1">{watch('XPlayerName')}</p>
           <div>
             <InputGroup
               className={
-                formState.errors.secondPlayerName
+                formState.errors.XPlayerName
                   ? 'border-destructive focus-visible:border-destructive'
                   : ''
               }
             >
-              <InputGroupInput placeholder="player name" {...register('secondPlayerName')} />
+              <InputGroupInput placeholder="player name" {...register('XPlayerName')} />
               <InputGroupAddon>
                 <User />
               </InputGroupAddon>
             </InputGroup>
-            {formState.errors.secondPlayerName && (
-              <FormErrorAlert
-                message={formState.errors.secondPlayerName.message}
-                className="mt-4"
-              />
+            {formState.errors.XPlayerName && (
+              <FormErrorAlert message={formState.errors.XPlayerName.message} className="mt-4" />
             )}
           </div>
         </div>

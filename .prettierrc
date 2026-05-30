@@ -6,5 +6,5 @@
   "printWidth": 100,
   "arrowParens": "always",
   "javascript.format.enable": false,
-"typescript.format.enable": false
+  "typescript.format.enable": false
 }
