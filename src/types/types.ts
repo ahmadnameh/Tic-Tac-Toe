@@ -9,6 +9,7 @@ export interface IGame {
   opponentType: TOpponentType | null
   difficulty: TDifficulty | null
   playersName: { X: string; O: string }
+  playerScore: { X: number; O: number }
 }
 
 export interface IGameSettings {
@@ -17,7 +18,9 @@ export interface IGameSettings {
   setOpponentType: (opponentType: TOpponentType) => void
   setDifficulty: (difficulty: TDifficulty) => void
   setPlayersName: (playersName: { X: string; O: string }) => void
-  isGameSettingsReady: () => boolean
+  setPlayerScore: (playerScore: { X: number; O: number }) => void
+  isGameReady: boolean
+  getComputerSymbol(): TPlayerSymbol | null
   saveFinalGameSettingState: () => void
   resetGameState: () => void
 }

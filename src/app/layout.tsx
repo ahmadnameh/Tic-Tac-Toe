@@ -30,7 +30,9 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Toaster position="top-center" />
         <ParticlesBackground />
-        <div className="h-[100vh] container mx-auto">{children}</div>
+        <div className="min-h-[100vh] h-[100%] flex justify-center items-center container mx-auto">
+          {children}
+        </div>
       </body>
     </html>
   )

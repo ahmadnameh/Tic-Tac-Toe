@@ -15,9 +15,4 @@ export const Games: GameItem[] = [
     previewComponent: XOPreview,
     overViewComponent: XOGameOverview,
   },
-  {
-    name: 'XO',
-    previewComponent: () => <div>test</div>,
-    overViewComponent: () => <p className="text-red-800 text-8xl font-bold">over View Component</p>,
-  },
 ]

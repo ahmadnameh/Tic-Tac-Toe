@@ -11,7 +11,7 @@ import { DrawerClose, DrawerFooter } from '@/components/ui/drawer'
 import { Info } from 'lucide-react'
 
 import { stages } from './helper/GameStages'
-import type { TDifficulty } from '@/types/types'
+import type { TDifficulty, TPlayerSymbol } from '@/types/types'
 import { cn } from '@/lib/utils'
 
 const schema = z.object({
@@ -23,7 +23,7 @@ export default function VSComputerStep({
   onFinishingSteps,
   onCancel,
 }: {
-  onFinishingSteps: (difficulty: TDifficulty) => void
+  onFinishingSteps: (difficulty: TDifficulty, playerSymbol: TPlayerSymbol) => void
   onCancel: () => void
 }) {
   const {
@@ -37,7 +37,7 @@ export default function VSComputerStep({
   })
 
   function onSubmit(data: z.infer<typeof schema>) {
-    onFinishingSteps(data.difficulty as TDifficulty)
+    onFinishingSteps(data.difficulty, data.playerSymbol)
   }
   const playerSymbol = watch('playerSymbol')
   const activeStage = stages.find((s) => s.title.toLowerCase() === watch('difficulty'))

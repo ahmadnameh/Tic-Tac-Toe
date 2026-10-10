@@ -68,20 +68,20 @@ export default function XOCell({ type }: { type: 'X' | 'O' | '' }) {
 export const draw: Variants = {
   hidden: { pathLength: 0, opacity: 0 },
   visible: (i: number) => {
-    const delay = i * 0.5
+    // const delay = i * 0.5
 
     return {
       pathLength: 1,
       opacity: 1,
       transition: {
         pathLength: {
-          delay,
+          // delay,
           type: 'spring',
           duration: 1.5,
           bounce: 0,
         },
         opacity: {
-          delay,
+          // delay,
           duration: 0.01,
         },
       },

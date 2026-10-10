@@ -15,7 +15,7 @@ const oponentTypeSchema = z.object({
   opponentType: z.enum(['computer', 'friend'], { message: 'Please select an option' }),
 })
 
-export default function XOStep1({onChangeStep}:{onChangeStep:(val:1|2)=>void}) {
+export default function XOStep1({ onChangeStep }: { onChangeStep: (val: 1 | 2) => void }) {
   const { setOpponentType, resetGameState } = useGameSettingsContext()
 
   const onSubmit = (data: z.infer<typeof oponentTypeSchema>) => {
@@ -32,7 +32,7 @@ export default function XOStep1({onChangeStep}:{onChangeStep:(val:1|2)=>void}) {
     resolver: zodResolver(oponentTypeSchema),
   })
 
-  function handleCancel () {
+  function handleCancel() {
     resetGameState()
     onChangeStep(1)
   }

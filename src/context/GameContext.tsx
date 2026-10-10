@@ -1,5 +1,12 @@
 import { ReactNode, createContext, useState, useMemo, useEffect } from 'react'
-import { IGame, TDifficulty, TGames, TOpponentType, IGameSettings } from '@/types/types'
+import {
+  IGame,
+  TDifficulty,
+  TGames,
+  TOpponentType,
+  IGameSettings,
+  TPlayerSymbol,
+} from '@/types/types'
 
 const GameSettingsContext = createContext<IGameSettings | null>(null)
 
@@ -11,6 +18,7 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
     opponentType: null,
     difficulty: null,
     playersName: { X: '', O: '' },
+    playerScore: { X: 0, O: 0 },
   })
 
   useEffect(() => {
@@ -35,6 +43,9 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
   }
   function setPlayersName(playersName: { X: string; O: string }) {
     setGameState((prev) => ({ ...prev, playersName: playersName }))
+  }
+  function setPlayerScore(playerScore: { X: number; O: number }) {
+    setGameState((prev) => ({ ...prev, playerScore }))
   }
 
   function isGameSettingsReady() {
@@ -67,7 +78,13 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
       opponentType: null,
       difficulty: null,
       playersName: { X: '', O: '' },
+      playerScore: { X: 0, O: 0 },
     })
+  }
+
+  function getComputerSymbol(): TPlayerSymbol | null {
+    if (gameState.opponentType !== 'computer') return null
+    else return gameState.playersName.X === 'Computer' ? 'X' : 'O'
   }
 
   const value = useMemo(
@@ -77,7 +94,9 @@ export const GameSettingsContextProvider = ({ children }: { children: ReactNode 
       setOpponentType,
       setDifficulty,
       setPlayersName,
-      isGameSettingsReady,
+      setPlayerScore,
+      isGameReady: isGameSettingsReady(),
+      getComputerSymbol,
       saveFinalGameSettingState,
       resetGameState,
     }),

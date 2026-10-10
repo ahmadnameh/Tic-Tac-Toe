@@ -77,8 +77,6 @@ export default function SelectGameCarousel({
         <CarouselPrevious variant="link" />
         <CarouselNext variant="link" />
       </Carousel>
-
-      <div className="text-center mt-4">Current Item: {current}</div>
     </div>
   )
 }

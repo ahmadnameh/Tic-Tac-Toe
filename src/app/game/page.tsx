@@ -10,7 +10,7 @@ export default function Page() {
   const OverviewComponent = Games[currentPlay].overViewComponent
 
   return (
-    <div className="grid xl:grid-cols-2 items-center gap-x-10 gap-y-1 h-full">
+    <div className="grid xl:grid-cols-2 items-center gap-x-10 gap-y-3 h-full">
       <OverviewComponent />
       <SelectGameCarousel onNextPlay={setCurrentPlay} />
     </div>
