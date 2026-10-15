@@ -1,23 +1,20 @@
 'use client'
+import { cn } from '@/lib/utils'
 import { motion, Variants } from 'framer-motion'
 
-export default function XOCell({ type }: { type: 'X' | 'O' | '' }) {
+export default function XOCell({
+  type,
+  disabledCell,
+}: {
+  type: 'X' | 'O' | ''
+  disabledCell: boolean
+}) {
   return (
     <div
-      className={`
-        w-full
-        aspect-square
-        max-w-[90px]
-        sm:max-w-[110px]
-        md:max-w-[130px]
-        lg:max-w-[150px]
-        rounded-2xl
-        p-2 sm:p-3
-        backdrop-blur-md
-        bg-white/5
-        border border-white/10
-        ${type === '' ? 'cursor-pointer' : 'cursor-default'}
-      `}
+      className={cn(
+        'w-full aspect-square max-w-[90px] sm:max-w-[110px]   md:max-w-[130px] lg:max-w-[150px] rounded-2xl p-2 sm:p-3 backdrop-blur-md bg-white/5 border border-white/10',
+        disabledCell ? 'cursor-not-allowed' : type === '' ? 'cursor-pointer' : 'cursor-default',
+      )}
     >
       {type === 'X' ? (
         <motion.svg className="w-full h-full p-1 sm:p-2">

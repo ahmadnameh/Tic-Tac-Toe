@@ -1,7 +1,7 @@
 'use client'
 
 import XOGameSteps from './XOStepsBeforePlay/XOGameSteps'
-import { GameSettingsDrawer } from '../common/GameSettings/GameSettingsDrawer'
+import { GameSettingsDrawer } from '../Shared/GameSettings/GameSettingsDrawer'
 import { motion } from 'motion/react'
 
 export default function XOGameOverview() {

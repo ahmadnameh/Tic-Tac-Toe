@@ -1,6 +1,6 @@
 import { motion } from 'motion/react'
 import { DrawerClose, DrawerFooter } from '@/components/ui/drawer'
-import NextButton from '@/components/modules/common/GameSettings/NextButton'
+import NextButton from '@/components/modules/Shared/GameSettings/NextButton'
 import { Button } from '@/components/ui/button'
 
 import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group'
@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { draw, shape } from '../../../XOGrid/XOCell'
-import { FormErrorAlert } from '@/components/modules/common/GameSettings/FormErrorMessage'
+import { FormErrorAlert } from '@/components/modules/Shared/GameSettings/FormErrorMessage'
 
 export default function VSFriendStep({
   onFinishingSteps,

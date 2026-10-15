@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form'
 import z from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { FormErrorAlert } from '@/components/modules/common/GameSettings/FormErrorMessage'
-import NextButton from '@/components/modules/common/GameSettings/NextButton'
+import { FormErrorAlert } from '@/components/modules/Shared/GameSettings/FormErrorMessage'
+import NextButton from '@/components/modules/Shared/GameSettings/NextButton'
 import { Button } from '@/components/ui/button'
 import { DrawerClose, DrawerFooter } from '@/components/ui/drawer'
 import { Info } from 'lucide-react'
@@ -125,7 +125,7 @@ export default function VSComputerStep({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="mx-auto max-w-md"
+              className="mx-auto max-w-[600px]"
             >
               <div className="flex gap-3 items-start border border-white/20 rounded-2xl p-5 text-white backdrop-blur-md bg-white/10">
                 <Info className="mt-1 opacity-80" />

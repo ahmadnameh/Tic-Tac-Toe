@@ -17,8 +17,9 @@ export default function XOPlayerCard({
   isWinner: boolean
   playerTurn: 'X' | 'O'
 }) {
-  const isX = type === 'X'
   const isCurrentTurn = playerTurn === type
+
+  const isPlayerComputer = name === 'Computer'
 
   const config = {
     X: {
@@ -30,7 +31,7 @@ export default function XOPlayerCard({
       border: 'border-[#0d63f8]/30',
       activeBorder: 'border-[#0d63f8]/80',
       badge: 'bg-[#0d63f8]/15 border-[#0d63f8]/50 text-[#5ee7ff]',
-      Icon: LaptopMinimal,
+      Icon: isPlayerComputer ? LaptopMinimal : User,
     },
 
     O: {
@@ -42,7 +43,7 @@ export default function XOPlayerCard({
       border: 'border-[#ff0088]/30',
       activeBorder: 'border-[#ff0088]/80',
       badge: 'bg-[#ff0088]/15 border-[#ff0088]/50 text-[#ff80bf]',
-      Icon: User,
+      Icon: isPlayerComputer ? LaptopMinimal : User,
     },
   }[type]
 
@@ -375,7 +376,7 @@ export default function XOPlayerCard({
               whitespace-nowrap
             `}
           >
-            {isX ? 'CPU' : 'USER'} PLAYER
+            {isPlayerComputer ? 'CPU' : 'USER'} PLAYER
           </span>
         </div>
       </div>

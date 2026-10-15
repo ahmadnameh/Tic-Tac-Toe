@@ -50,7 +50,13 @@ export class XOBoard {
 
     if (!!next.Winner) {
       return next
-    } else if (rowIndex > 2 || colIndex > 2 || next.board[rowIndex][colIndex] !== '') {
+    } else if (
+      rowIndex > 2 ||
+      colIndex > 2 ||
+      rowIndex < 0 ||
+      colIndex < 0 ||
+      next.board[rowIndex][colIndex] !== ''
+    ) {
       next.checkWinner()
       return next
     }
