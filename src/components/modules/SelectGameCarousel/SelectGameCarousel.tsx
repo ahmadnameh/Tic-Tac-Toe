@@ -29,7 +29,6 @@ export default function SelectGameCarousel({
   )
 
   const [api, setApi] = useState<CarouselApi>()
-  const [current, setCurrent] = useState(0)
 
   const { gameState } = useGameSettingsContext()
 
@@ -44,8 +43,6 @@ export default function SelectGameCarousel({
 
     const onSelect = () => {
       const currentIndex = api.selectedScrollSnap()
-
-      setCurrent(currentIndex)
 
       onNextPlay(currentIndex)
     }

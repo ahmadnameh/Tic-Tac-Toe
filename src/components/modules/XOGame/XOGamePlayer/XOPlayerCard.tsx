@@ -1,7 +1,7 @@
 'use client'
 
 import { TPlayerSymbol } from '@/types/types'
-import { User, LaptopMinimal, Crown, Zap } from 'lucide-react'
+import { User, LaptopMinimal, Crown } from 'lucide-react'
 import { useState } from 'react'
 
 export default function XOPlayerCard({

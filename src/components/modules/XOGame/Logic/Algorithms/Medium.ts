@@ -47,7 +47,7 @@ const winingCells = [
 ]
 
 export function getMediumMove(board: TXOCellValue[][], player: TPlayerSymbol) {
-  let enemy: TPlayerSymbol = player === 'X' ? 'O' : 'X'
+  const enemy: TPlayerSymbol = player === 'X' ? 'O' : 'X'
 
   //1. try to win
   if (findWiningMove(board, player) !== -1) {
@@ -64,10 +64,10 @@ export function getMediumMove(board: TXOCellValue[][], player: TPlayerSymbol) {
 function findWiningMove(board: TXOCellValue[][], player: TPlayerSymbol) {
   let WiningIndex = null
 
-  let enemy = player === 'X' ? 'O' : 'X'
+  const enemy = player === 'X' ? 'O' : 'X'
 
   for (let i = 0; i < 8; i++) {
-    let winingDraw = winingCells[i]
+    const winingDraw = winingCells[i]
     if (winingDraw.find((cell) => board[cell[0]][cell[1]] === enemy)) {
       continue
     }

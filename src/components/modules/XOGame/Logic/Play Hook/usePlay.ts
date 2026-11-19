@@ -66,7 +66,7 @@ export default function usePlay() {
         clearTimeout(confettiTimer)
       }
     }
-  }, [boardState])
+  }, [boardState,gameState?.opponentType])
 
   function handleSetNewGame() {
     setBoardState((prev) => prev.newGame())
