@@ -48,7 +48,7 @@ export function FinishedGameAlert({ open, onPlayAgain }: FinishedGameAlertProps)
 
         <AlertDialogFooter>
           <AlertDialogCancel
-            className="bg-white shadow-none hover:bg-[#bdc1c1] cursor-pointer"
+            className="bg-white shadow-none hover:bg-[#bdc1c1] cursor-pointer text-black"
             onClick={handleBackToSelectGame}
           >
             No, thanks

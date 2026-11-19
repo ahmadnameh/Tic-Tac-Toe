@@ -4,6 +4,8 @@ import './globals.css'
 
 import ParticlesBackground from '@/components/layouts/ParticlesLayout/ParticlesBackground'
 import { Toaster } from '@/components/ui/sonner'
+import { ThemeProvider } from './Themes/ThemeProvider'
+import  SelectThemeDrawer from '@/app/Themes/components/SelectThemeDrawer'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,11 +30,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Toaster position="top-center" />
-        <ParticlesBackground />
-        <div className="min-h-[100vh] h-[100%] flex justify-center items-center container mx-auto">
-          {children}
-        </div>
+        <ThemeProvider>
+          <Toaster position="top-center" />
+          <ParticlesBackground />
+          <div className="min-h-[100vh] h-[100%] flex justify-center items-center container mx-auto">
+            <div className="absolute top-[30px] right-[50px]">
+              <SelectThemeDrawer />
+            </div>
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
