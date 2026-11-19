@@ -37,7 +37,7 @@ export default function VSFriendStep({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex justify-between gap-[10px] text-white max-w-lg mx-auto">
-        <div className="grid gap-5 relative md:mt-0 mt-[25px]">
+        <div className="grid gap-5 relative md:mt-0 mt-[40px]">
           <motion.svg
             viewBox="0 0 200 200"
             initial="hidden"
@@ -69,7 +69,7 @@ export default function VSFriendStep({
           </div>
         </div>
         <hr className="w-[1px] h-[120px] bg-white" />
-        <div className="grid gap-5 relative md:mt-0 mt-[25px]">
+        <div className="grid gap-5 relative md:mt-0 mt-[40px]">
           <motion.svg
             viewBox="-10 -10 200 200"
             initial="hidden"

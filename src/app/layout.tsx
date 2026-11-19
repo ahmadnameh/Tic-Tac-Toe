@@ -34,7 +34,7 @@ export default function RootLayout({
           <Toaster position="top-center" />
           <ParticlesBackground />
           <div className="min-h-[100vh] h-[100%] flex justify-center items-center container mx-auto">
-            <div className="absolute top-[30px] right-[50px]">
+            <div className="absolute top-[14px] md:top-[30px] right-[28px] md:right-[50px] z-10">
               <SelectThemeDrawer />
             </div>
             {children}

@@ -16,7 +16,7 @@ export default function XOGameOverview() {
       }}
       className="flex items-center justify-center md:px-0 px-6"
     >
-      <div className="max-w-3xl text-center backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl p-10 shadow-2xl">
+      <div className="max-w-3xl text-center backdrop-blur-md bg-white/5 border border-white/10 rounded-3xl md:p-10 p-5 shadow-2xl">
         <motion.h1
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}

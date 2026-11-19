@@ -59,7 +59,7 @@ export default function XOStep1({ onChangeStep }: { onChangeStep: (val: 1 | 2) =
                   whileHover={hoverEffect}
                   whileTap={{ scale: 0.96 }}
                   onClick={() => setValue('opponentType', value)}
-                  className="group relative w-80 p-6 rounded-2xl bg-transparent border border-white text-white overflow-hidden"
+                  className="group relative w-80 p-4 md:p-6 rounded-2xl bg-transparent border border-white text-white overflow-hidden"
                 >
                   {isSelected && (
                     <motion.div
@@ -72,7 +72,7 @@ export default function XOStep1({ onChangeStep }: { onChangeStep: (val: 1 | 2) =
 
                   {isSelected && (
                     <motion.div
-                      className="absolute top-2 right-4 text-green-400"
+                      className="absolute top-1 md:top-2 right-2 md:right-4 text-green-400"
                       initial={{ opacity: 0, scale: 0.4, rotate: -90 }}
                       animate={{ opacity: 1, scale: 1, rotate: 0 }}
                       transition={{ type: 'spring', stiffness: 260, damping: 14 }}
@@ -82,10 +82,10 @@ export default function XOStep1({ onChangeStep }: { onChangeStep: (val: 1 | 2) =
                   )}
 
                   <motion.span
-                    className="relative z-10 block sm:text-xl font-semibold text-base"
+                    className="relative z-10 block sm:text-xl font-semibold text-sm"
                     animate={{
                       scale: isSelected ? 1.08 : 1,
-                      letterSpacing: isSelected ? '0.08em' : '0.02em',
+                      letterSpacing: isSelected ? '0.04em' : '0.02em',
                     }}
                     transition={{ duration: 0.3 }}
                   >
